@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using CashGiftDiary.Web.Models.ResultModel;
 using CashGiftDiary.Web.Services;
 using Entity;
+using Entity.ResultModel;
 
 namespace CashGiftDiary.Web.Repo
 {

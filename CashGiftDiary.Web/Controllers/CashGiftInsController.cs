@@ -1,6 +1,6 @@
-﻿using CashGiftDiary.Web.Models.ResultModel;
-using CashGiftDiary.Web.Repo;
+﻿using CashGiftDiary.Web.Repo;
 using Entity;
+using Entity.ResultModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 

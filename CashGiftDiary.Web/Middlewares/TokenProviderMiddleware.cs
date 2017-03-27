@@ -1,13 +1,12 @@
 ﻿using CashGiftDiary.Web.Repo;
+using Entity.ResultModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -58,14 +57,18 @@ namespace CashGiftDiary.Web.Middlewares
         }
         private async Task GenerateToken(HttpContext context)
         {
+            TokenResult result = new TokenResult();
             var username = context.Request.Form["Phone"];
             var password = context.Request.Form["Password"];
 
             var identity = await GetIdentity(username, password,context.RequestServices.GetRequiredService<IUserRepository>());
             if (identity == null)
             {
-                context.Response.StatusCode = 400;
-                await context.Response.WriteAsync("Invalid username or password.");
+                result.StatusCode = Constant.STATUS_CODE_ERROR;
+                result.Desc = "手机号或密码错误";
+                // Serialize and return the response
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
                 return;
             }
 
@@ -98,15 +101,16 @@ namespace CashGiftDiary.Web.Middlewares
                 expires: now.Add(_options.Expiration),
                 issuedAt:now,
               signingCredentials: _options.SigningCredentials);
-            var response = new
+            result.StatusCode = Constant.STATUS_CODE_OK;
+            result.Desc = "Success";
+            result.ResponseData = new TokenModel()
             {
-                access_token = encodedJwt,
-                expires_in = (int)_options.Expiration.TotalSeconds
+                AccessToken = encodedJwt,
+                ExpiresIn = (int)_options.Expiration.TotalSeconds
             };
-
             // Serialize and return the response
             context.Response.ContentType = "application/json";
-            await context.Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
+            await context.Response.WriteAsync(JsonConvert.SerializeObject(result, new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }
 
         private Task<ClaimsIdentity> GetIdentity(string username, string password,IUserRepository userRepo)

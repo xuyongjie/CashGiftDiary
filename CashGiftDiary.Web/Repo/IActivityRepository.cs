@@ -1,5 +1,5 @@
-﻿using CashGiftDiary.Web.Models.ResultModel;
-using Entity;
+﻿using Entity;
+using Entity.ResultModel;
 using System.Collections.Generic;
 
 namespace CashGiftDiary.Web.Repo

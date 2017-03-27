@@ -9,8 +9,8 @@ namespace Client.Common
 {
     public class ClientFactory
     {
-        public const string BaseAddress = "http://xyjvd.cloudapp.net:8086/";
-        public static HttpClient CreateHttpClient()
+        public const string BaseAddress = "http://localhost:64487/";
+        private static HttpClient CreateHttpClient()
         {
             AppSettings settings = new AppSettings();
             AccessTokenProvider loginProvider = new AccessTokenProvider();

@@ -1,10 +1,12 @@
 ﻿using CashGiftDiary.Web.Models;
-using CashGiftDiary.Web.Models.ResultModel;
 using CashGiftDiary.Web.Repo;
 using CashGiftDiary.Web.Services;
 using Entity;
+using Entity.ResultModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,20 +20,6 @@ namespace CashGiftDiary.Web.Controllers
         public AccountController(IUserRepository userRepo)
         {
             _userRepo = userRepo;
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [ActionName("login")]
-        public async Task<BaseResultModel<User>> Login([FromBody]LoginModel model)
-        {
-            var result = _userRepo.CheckUser(model.Phone, model.Password);
-            if (result.StatusCode == Constant.STATUS_CODE_OK)
-            {
-                ClaimsPrincipal principal = new ClaimsPrincipal(new UserIdentity(model.Phone, "cookie-based", true));
-                await HttpContext.Authentication.SignInAsync("CashGiftDiary", principal);
-            }
-            return result;
         }
 
         [HttpPost]
@@ -56,7 +44,11 @@ namespace CashGiftDiary.Web.Controllers
                 StringBuilder builder = new StringBuilder();
                 foreach (var key in ModelState.Keys)
                 {
-                    builder.Append(key).Append(":").Append(ModelState[key]);
+                    builder.Append(key).Append(":");
+                    foreach (var item in ModelState[key].Errors)
+                    {
+                        builder.Append(item.ErrorMessage).AppendLine();
+                    }
                 }
                 return new BaseResultModel<string>() { StatusCode = Constant.STATUS_CODE_ERROR, Desc = builder.ToString() };
             }

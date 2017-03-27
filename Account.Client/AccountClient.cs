@@ -60,14 +60,13 @@ namespace Account.Client
             }
         }
 
-        public Task<HttpResult<AccessTokenResponse>> LoginAsync(string userName, string password)
+        public Task<HttpResult<AccessTokenResponse>> LoginAsync(string phone, string password)
         {
             ThrowIfDisposed();
             return GetTokenAsync(new Dictionary<string, string>()
             {
-                { "grant_type", "password" },
-                { "username", userName },
-                { "password", password }
+                { "Phone", phone },
+                { "Password", password }
             });
         }
 
