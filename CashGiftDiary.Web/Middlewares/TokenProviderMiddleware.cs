@@ -21,7 +21,7 @@ namespace CashGiftDiary.Web.Middlewares
 
         public string Audience { get; set; }
 
-        public TimeSpan Expiration { get; set; } = TimeSpan.FromMinutes(5);
+        public TimeSpan Expiration { get; set; } = TimeSpan.FromDays(30);
 
         public SigningCredentials SigningCredentials { get; set; }
     }
@@ -76,6 +76,7 @@ namespace CashGiftDiary.Web.Middlewares
             var claims = new Claim[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, username),
+                new Claim(ClaimTypes.Name,username),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(now).ToString(), ClaimValueTypes.Integer64)
             };
