@@ -50,7 +50,7 @@ namespace CashGiftDiary.Web.Repo
             var already = GetUserByPhone(phone);
             if (already == null)
             {
-                var user = Add(new User { Phone = phone, PasswordHash = new PasswordService(password).Hash() });
+                var user = Add(new User { Phone = phone,UserName=phone, PasswordHash = new PasswordService(password).Hash() });
                 result.StatusCode = Constant.STATUS_CODE_OK;
                 result.Desc = "注册成功";
             }
