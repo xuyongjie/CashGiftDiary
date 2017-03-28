@@ -15,7 +15,7 @@ namespace CashGiftDiary.Web.Models
         [MinLength(6,ErrorMessage ="密码长度最少为6位")]
         public string Password { get; set; }
         [Compare("Password",ErrorMessage ="两次密码不一致")]
-        public string PasswordConfirm { get; set; }
+        public string ConfirmPassword { get; set; }
         [Required]
         public string VerifyCode { get; set; }
     }

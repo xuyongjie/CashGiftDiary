@@ -104,11 +104,11 @@ namespace Account.Client
             }
         }
 
-        public async Task<HttpResult<RegisterResponse>> RegisterAsync(RegisterUser registerUser)
+        public async Task<HttpResult<BaseResultModel<string>>> RegisterAsync(RegisterUser registerUser)
         {
             ThrowIfDisposed();
-            HttpResult<RegisterResponse> result = await HttpClient.PostAsJsonAsync<RegisterUser, RegisterResponse>(RegisterUri, registerUser);
-            AddAllErrors(result, result.Content);
+            HttpResult<BaseResultModel<string>> result = await HttpClient.PostAsJsonAsync<RegisterUser, BaseResultModel<string>>(RegisterUri, registerUser);
+            //AddAllErrors(result, result.Content.ResponseData);
             return result;
         }
 

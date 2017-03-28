@@ -13,21 +13,26 @@ namespace Account.Client
         {
         }
 
-        public RegisterUser(string userName, string password)
-            : this(userName, password, password)
+        public RegisterUser(string userName, string password,string verifyCode)
+            : this(userName, password, password,verifyCode)
         {
         }
 
-        public RegisterUser(string userName, string password, string confirmPassword)
+        public RegisterUser(string userName, string password, string confirmPassword,string verifyCode)
         {
             UserName = userName;
             Password = password;
             ConfirmPassword = confirmPassword;
+            VerifyCode = verifyCode;
         }
         
-        [JsonProperty("Email")]
+        [JsonProperty("Phone")]
         public string UserName { get; set; }
+        [JsonProperty("Password")]
         public string Password { get; set; }
+        [JsonProperty("ConfirmPassword")]
         public string ConfirmPassword { get; set; }
+        [JsonProperty("VerifyCode")]
+        public string VerifyCode { get; set; }
     }
 }
