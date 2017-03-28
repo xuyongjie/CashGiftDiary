@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Account.Client\Account.Client.csproj" />
+    <ProjectReference Include="..\CashGiftDiary.Client\CashGiftDiary.Client.csproj" />
+    <ProjectReference Include="..\Client.Common\Client.Common.csproj" />
+    <ProjectReference Include="..\ViewLayer\ViewLayer.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -8,6 +8,11 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel Orientation="Vertical">
+            <TextBox Name="PhoneTextBox" PlaceholderText="手机号"/>
+            <PasswordBox Name="PasswordTextBox" PlaceholderText="密码"/>
+            <Button Content="Login" Style="{StaticResource ButtonDefault}" Name="LoginButton" Click="LoginButton_Click"/>
+            <TextBlock Text="login result" Name="LoginResultTextBlock"/>
+        </StackPanel>
     </Grid>
 </Page>

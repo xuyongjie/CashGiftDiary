@@ -12,7 +12,7 @@ namespace Client.Common
         public const string BaseAddress = "http://localhost:64487/";
         private static HttpClient CreateHttpClient()
         {
-            AppSettings settings = new AppSettings();
+            AppSettings settings = AppSettings.GetInstance();
             AccessTokenProvider loginProvider = new AccessTokenProvider();
             OAuth2BearerTokenHandler oauth2Handler = new OAuth2BearerTokenHandler(settings, loginProvider);
             HttpClient httpClient = HttpClientFactory.Create(oauth2Handler);

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using PresenterLayer;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using ViewLayer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -20,11 +22,24 @@ namespace CashGiftDiary.UWP
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : Page,ILoginView
     {
+        private ILoginPresenter _loginPresenter;
+
         public MainPage()
         {
             this.InitializeComponent();
+            _loginPresenter = new LoginPresenter(this);
+        }
+
+        public void SetLoginResult(string result)
+        {
+            LoginResultTextBlock.Text = result;
+        }
+
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            await _loginPresenter.LoginAsync(PhoneTextBox.Text, PasswordTextBox.Password);
         }
     }
 }

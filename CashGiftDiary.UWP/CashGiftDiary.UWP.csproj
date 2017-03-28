@@ -132,6 +132,14 @@
       <Project>{02993892-fe69-4919-8cfc-b6dc516dae61}</Project>
       <Name>CashGiftDiary.Client</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PresenterLayer\PresenterLayer.csproj">
+      <Project>{833d4d93-73a2-444f-96d1-b3575f08363d}</Project>
+      <Name>PresenterLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewLayer\ViewLayer.csproj">
+      <Project>{112ea05c-06fa-424f-b218-1051794c1d6f}</Project>
+      <Name>ViewLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

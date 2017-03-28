@@ -57,19 +57,6 @@ namespace CashGiftDiary.Web
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            //app.UseCookieAuthentication(new CookieAuthenticationOptions()
-            //{
-            //    AuthenticationScheme = Constant.PROJECT_SCHEMA,
-            //    AccessDeniedPath = new PathString("/Account/Forbidden/"),
-            //    AutomaticAuthenticate = true,
-            //    AutomaticChallenge = true,
-            //    Events = new CookieAuthenticationEvents()
-            //    {
-            //        OnValidatePrincipal = UserValidator.ValidateAsync
-            //    },
-            //    ExpireTimeSpan = TimeSpan.FromDays(10)
-            //});
-             // Add JWT generation endpoint:
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
             var options = new TokenProviderOptions
             {

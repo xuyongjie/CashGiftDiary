@@ -1,4 +1,5 @@
 ﻿using Account.Client;
+using Entity.ResultModel;
 using System;
 using System.Threading.Tasks;
 using WebApi.Client;
@@ -7,7 +8,7 @@ namespace Client.Common
 {
     class AccessTokenProvider : IAccessTokenProvider
     {
-        AppSettings settings = new AppSettings();
+        AppSettings settings = AppSettings.GetInstance();
 
         public async Task<string> GetTokenAsync()
         {
@@ -30,14 +31,14 @@ namespace Client.Common
             var passwordCredential = settings.GetPasswordCredentials();
             if (passwordCredential != null)
             {
-                HttpResult<AccessTokenResponse> result;
+                HttpResult<TokenResult> result;
                 using (AccountClient accountClient = ClientFactory.CreateAccountClient())
                 {
                     result = await accountClient.LoginAsync(passwordCredential.Item1, passwordCredential.Item2);
                 }
                 if (result.Succeeded)
                 {
-                    return result.Content.AccessToken;
+                    return result.Content.ResponseData?.AccessToken;
                 }
                 settings.ClearPasswordCredentials();
             }

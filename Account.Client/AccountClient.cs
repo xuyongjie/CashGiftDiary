@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Constant;
+using Entity.ResultModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -34,33 +36,33 @@ namespace Account.Client
 
         public HttpClient HttpClient { get; set; }
 
-        private async Task<HttpResult<AccessTokenResponse>> GetTokenAsync(IEnumerable<KeyValuePair<string, string>> values)
+        private async Task<HttpResult<TokenResult>> GetTokenAsync(IEnumerable<KeyValuePair<string, string>> values)
         {
             try
             {
                 using (HttpResponseMessage response = await HttpClient.PostAsync(TokenUri, new FormUrlEncodedContent(values)))
                 {
-                    HttpResult<AccessTokenResponse> result = new HttpResult<AccessTokenResponse>() { StatusCode = response.StatusCode };
+                    HttpResult<TokenResult> result = new HttpResult<TokenResult>() { StatusCode = response.StatusCode };
                     if (response.Content != null)
                     {
 
-                        result.Content = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<AccessTokenResponse>(response.Content.ReadAsStringAsync().Result));
+                        result.Content = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<TokenResult>(response.Content.ReadAsStringAsync().Result));
                     }
-                    AccessTokenResponse tokenResponse = result.Content;
-                    if (tokenResponse != null && tokenResponse.Error != null)
+                    TokenResult tokenResponse = result.Content;
+                    if (tokenResponse != null && tokenResponse.StatusCode != SolutionConstant.STATUS_CODE_OK)
                     {
-                        result.Errors.Add(tokenResponse.ErrorDescription);
+                        result.Errors.Add(tokenResponse.Desc);
                     }
                     return result;
                 }
             }
             catch (HttpRequestException ex)
             {
-                return HttpResult<AccessTokenResponse>.Failure(ex.Message);
+                return HttpResult<TokenResult>.Failure(ex.Message);
             }
         }
 
-        public Task<HttpResult<AccessTokenResponse>> LoginAsync(string phone, string password)
+        public Task<HttpResult<TokenResult>> LoginAsync(string phone, string password)
         {
             ThrowIfDisposed();
             return GetTokenAsync(new Dictionary<string, string>()

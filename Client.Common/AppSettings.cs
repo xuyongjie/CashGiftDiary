@@ -9,7 +9,31 @@ namespace Client.Common
 {
     public class AppSettings : IAccessTokenStore
     {
-        public string AccessToken { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private static AppSettings _instance;
+        private string _accessToken;
+        private AppSettings()
+        {
+
+        }
+        public static AppSettings GetInstance()
+        {
+            if(_instance==null)
+            {
+                _instance = new AppSettings();
+            }
+            return _instance;
+        }
+        public string AccessToken
+        {
+            get
+            {
+                return _accessToken;
+            }
+            set
+            {
+                _accessToken = value;
+            }
+        }
 
         internal void ClearPasswordCredentials()
         {
@@ -17,7 +41,7 @@ namespace Client.Common
         }
         public Tuple<string,string> GetPasswordCredentials()
         {
-            throw new NotImplementedException();
+            return new Tuple<string, string>("18867101652", "123456");
         }
     }
 }
