@@ -26,6 +26,14 @@ namespace PresenterLayer
                 ConfirmPassword=confirmPassword,
                 VerifyCode=verifyCode
             });
+            if(registerResponse.Succeeded)
+            {
+                _registerView.setRegisterResult(registerResponse.Content?.StatusCode==Constant.SolutionConstant.STATUS_CODE_OK, registerResponse.Content?.Desc);
+            }
+            else
+            {
+                _registerView.setRegisterResult(false, registerResponse.Errors.ToString());
+            }
         }
     }
 }

@@ -6,5 +6,6 @@ namespace ViewLayer
 {
     public interface IRegisterView
     {
+        void setRegisterResult(bool result, string error);
     }
 }

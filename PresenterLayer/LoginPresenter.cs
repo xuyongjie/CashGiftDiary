@@ -26,7 +26,7 @@ namespace PresenterLayer
             }
             else
             {
-                _loginView.SetLoginResult(response.Content?.Desc);
+                _loginView.SetLoginResult("登录失败\n"+response.Content?.Desc);
             }
         }
     }

@@ -9,24 +9,29 @@
         android:layout_height="wrap_content"
         android:id="@+id/etPhone" />
     <EditText
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etVerifyCode" />
+    <EditText
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/etPassword" />
-    <Button
-        android:text="登录"
+    <EditText
+        android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btLogin" />
-    <TextView
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvLoginResult" />
+        android:id="@+id/etConfirmPassword" />
     <Button
         android:text="注册"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btRegister" />
+    <TextView
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvRegisterResult" />
 </LinearLayout>

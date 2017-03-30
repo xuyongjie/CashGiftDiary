@@ -47,6 +47,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,13 +57,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="RegisterActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
+    <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
+    <AndroidResource Include="Resources\layout\Register.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -80,6 +88,14 @@
     <ProjectReference Include="..\CashGiftDiary.Client\CashGiftDiary.Client.csproj">
       <Project>{02993892-fe69-4919-8cfc-b6dc516dae61}</Project>
       <Name>CashGiftDiary.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PresenterLayer\PresenterLayer.csproj">
+      <Project>{833D4D93-73A2-444F-96D1-B3575F08363D}</Project>
+      <Name>PresenterLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewLayer\ViewLayer.csproj">
+      <Project>{112EA05C-06FA-424F-B218-1051794C1D6F}</Project>
+      <Name>ViewLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

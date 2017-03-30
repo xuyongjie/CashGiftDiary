@@ -9,7 +9,7 @@ namespace Client.Common
 {
     public class ClientFactory
     {
-        public const string BaseAddress = "http://localhost:64487/";
+        public const string BaseAddress = "http://localhost:5000/";
         private static HttpClient CreateHttpClient()
         {
             AppSettings settings = AppSettings.GetInstance();
