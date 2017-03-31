@@ -29,7 +29,14 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <BundleAssemblies>False</BundleAssemblies>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+    <Debugger>.Net (Xamarin)</Debugger>
+    <AotAssemblies>False</AotAssemblies>
+    <EnableLLVM>False</EnableLLVM>
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+    <EnableProguard>False</EnableProguard>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>PdbOnly</DebugType>
@@ -85,12 +92,8 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CashGiftDiary.Client\CashGiftDiary.Client.csproj">
-      <Project>{02993892-fe69-4919-8cfc-b6dc516dae61}</Project>
-      <Name>CashGiftDiary.Client</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PresenterLayer\PresenterLayer.csproj">
-      <Project>{833D4D93-73A2-444F-96D1-B3575F08363D}</Project>
+      <Project>{833d4d93-73a2-444f-96d1-b3575f08363d}</Project>
       <Name>PresenterLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewLayer\ViewLayer.csproj">
