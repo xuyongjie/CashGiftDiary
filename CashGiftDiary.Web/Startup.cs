@@ -57,6 +57,8 @@ namespace CashGiftDiary.Web
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
             var options = new TokenProviderOptions
             {
@@ -83,8 +85,7 @@ namespace CashGiftDiary.Web
             {
                 routes.MapRoute(
                 name: "default",
-                template: "api/{controller}/{action}/{id?}",
-                defaults: new { controller = "Home", action = "Index" });
+                template: "api/{controller}/{action}/{id?}");
             });
         }
     }
